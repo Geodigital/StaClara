@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="../src/leaflet.legend.css" />
+    <script type="text/javascript" src="../src/leaflet.legend.js"></script>
+
+
+    <title>Santa Clara</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body,
+        #map {
+            height: 100%;
+        }
+
+    </style>
+
+</head>
+
+    <body>
+        <div id = 'map'>
+    	</div>
+
+		<script src="staclara_poly.geojson" type="text/javascript"></script>
+		<script src="granos.geojson" type="text/javascript"></script>
+		<script src="cana.geojson" type="text/javascript"></script>
+		<script src="ingenio.geojson" type="text/javascript"></script> 		
+    
+	</body>
+
+		<script type="text/javascript"> 
+
+			var map = L.map('map')
+			.setView([19.65, -102.5], 11); 
+
+			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+			}).addTo(map);
+			
+			function popup(feature, layer) { 
+			if (feature.properties && feature.properties.predio) 
+			{ 
+			layer.bindPopup("<br />Predio: "+feature.properties.predio + "<br />Zona: "+feature.properties.nombre_zon +"<br />Area(ha): "+ feature.properties.area_ha); 
+			} 
+			}			
+			
+			function estilo_granos(feature) { 
+			return { 
+			fillColor: 'red',
+			weight: 0.5, 
+			opacity: 0.3, 
+			color: 'red', 
+			fillOpacity: 0.3 
+			}}; 
+			function estilo_cana(feature) { 
+			return { 
+			fillColor: 'green',
+			weight: 0.5, 
+			opacity: 0.5, 
+			color: 'green', 
+			fillOpacity: 0.5 
+			}}; 	
+			function estilo_poly(feature) { 
+			return { 
+			fillColor: 'yellow',
+			weight: 0.5, 
+			opacity: 0.3, 
+			color: 'black', 
+			fillOpacity: 0.1 
+			}}; 	
+
+
+			
+			geojsonLayer = L.geoJson(poly,{style: estilo_poly, onEachFeature: popup}).addTo(map);
+			geojsonLayer1 = L.geoJson(granos,{style: estilo_granos}).addTo(map);
+			geojsonLayer2 = L.geoJson(cana,{style: estilo_cana}).addTo(map);
+			geojsonLayer3 = L.geoJson(ingenio).addTo(map);
+			
+			
+			
+			
+			
+			L.control.scale().addTo(map);
+
+			var legend = L.control({ position: "topright"});
+
+			legend.onAdd = function(map) {
+			var div = L.DomUtil.create("div", "legend");
+			div.innerHTML += '<img alt="legend" src=" leyenda.png " width="300" height="120" />';
+			return div;
+			};
+			legend.addTo(map);
+			
+		</script>
+
+</html>
