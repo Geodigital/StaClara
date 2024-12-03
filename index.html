@@ -82,11 +82,11 @@
 
 
 			
-			geojsonLayer = L.geoJson(poly,{style: estilo_poly, onEachFeature: popup}).addTo(map);
+			
 			geojsonLayer1 = L.geoJson(granos,{style: estilo_granos}).addTo(map);
 			geojsonLayer2 = L.geoJson(cana,{style: estilo_cana}).addTo(map);
 			geojsonLayer3 = L.geoJson(ingenio).addTo(map);
-			
+			geojsonLayer = L.geoJson(poly,{style: estilo_poly, onEachFeature: popup}).addTo(map);
 			
 			
 			
