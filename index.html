@@ -32,20 +32,11 @@
         <div id = 'map'>
     	</div>
 
-		<script src="staclara_poly.js" type="text/javascript"></script>
+		<script src="Poligonos_StaClara.js" type="text/javascript"></script>
 		<script src="granos.js" type="text/javascript"></script>
 		<script src="cana.js" type="text/javascript"></script>
 		<script src="ingenio.js" type="text/javascript"></script> 		
-    
-	
-		<script src="vendor/geotiff.js"></script>
-		<script src="vendor/plotty.js"></script>
 
-		<script src="leaflet-geotiff.js"></script>
-
-		<script src="leaflet-geotiff-plotty.js"></script>
-
-	
 	</body>
 
 		<script type="text/javascript"> 
@@ -54,14 +45,14 @@
 			.setView([19.65, -102.5], 11); 
 
 			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				maxZoom: 15,
+				maxZoom: 14,
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			}).addTo(map);
 			
 			function popup(feature, layer) { 
-			if (feature.properties && feature.properties.predio) 
+			if (feature.properties && feature.properties.Predio) 
 			{ 
-			layer.bindPopup("<br />Predio: "+feature.properties.predio + "<br />Zona: "+feature.properties.nombre_zon +"<br />Area(ha): "+ feature.properties.area_ha); 
+			layer.bindPopup("<br />Predio: "+feature.properties.Predio + "<br />Zona: "+feature.properties.Nombre_Zona +"<br />Area(ha): "+ feature.properties.Superficie_Estimada); 
 			} 
 			}			
 			
@@ -95,7 +86,7 @@
 			var geojsonLayer2 = L.geoJson(cana,{style: estilo_cana}).addTo(map);
 			var geojsonLayer3 = L.geoJson(ingenio).addTo(map);
 
-			var tilesource_layer = L.tileLayer('./Tiles/{z}/{x}/{y}.png', {minZoom: 11, maxZoom: 13, tms: false, attribution: 'Created by QGIS'}).addTo(map);
+			var tilesource_layer = L.tileLayer('./Tiles/{z}/{x}/{y}.png', {minZoom: 11, maxZoom: 14, tms: false, attribution: 'Created by QGIS'}).addTo(map);
 			
 			var baseMaps = {
 				"Imagen Sentinel 2(30-oct-24)": tilesource_layer
