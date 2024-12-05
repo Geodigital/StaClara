@@ -76,7 +76,7 @@
 			return { 
 			fillColor: 'yellow',
 			weight: 0.5, 
-			opacity: 0.3, 
+			opacity: 0.7, 
 			color: 'black', 
 			fillOpacity: 0.0 
 			}}; 	
@@ -86,7 +86,7 @@
 			var geojsonLayer2 = L.geoJson(cana,{style: estilo_cana}).addTo(map);
 			var geojsonLayer3 = L.geoJson(ingenio).addTo(map);
 
-			var tilesource_layer = L.tileLayer('./Tiles/{z}/{x}/{y}.png', {minZoom: 11, maxZoom: 14, tms: false, attribution: 'Created by QGIS'}).addTo(map);
+			var tilesource_layer = L.tileLayer('./Tiles/{z}/{x}/{y}.png', {minZoom: 11, maxZoom: 14, opacity: 0.8, tms: false, attribution: 'Created by QGIS'}).addTo(map);
 			
 			var baseMaps = {
 				"Imagen Sentinel 2(30-oct-24)": tilesource_layer
